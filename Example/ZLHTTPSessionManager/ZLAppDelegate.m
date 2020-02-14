@@ -7,12 +7,18 @@
 //
 
 #import "ZLAppDelegate.h"
+#import <ZLHTTPSessionHeader.h>
 
 @implementation ZLAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    [ZLHTTPSessionManager configDebugUrlPrefix:@"https://www.baidu.com" OnlineUrlPrefix:nil Online:NO ShowLogs:YES NetworkState:^(ZLHTTPSessionNetworkStatus state) {
+        //这里监测网络变化，调动你的代码
+    }];
+    
     return YES;
 }
 

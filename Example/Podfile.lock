@@ -1,0 +1,39 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - ZLHTTPSessionManager (1.0.0):
+    - ZLHTTPSessionManager/Unit (= 1.0.0)
+  - ZLHTTPSessionManager/Unit (1.0.0):
+    - AFNetworking (~> 3.2.1)
+
+DEPENDENCIES:
+  - ZLHTTPSessionManager (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - AFNetworking
+
+EXTERNAL SOURCES:
+  ZLHTTPSessionManager:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  ZLHTTPSessionManager: 3af71663352e3dcca2a33269d680c62e9980e51b
+
+PODFILE CHECKSUM: ab472cfb7a83589ff0c103cb30d84ac3c809bd81
+
+COCOAPODS: 1.9.0.beta.3
