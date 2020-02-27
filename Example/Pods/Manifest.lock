@@ -14,9 +14,9 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
-  - ZLHTTPSessionManager (1.0.0):
-    - ZLHTTPSessionManager/Unit (= 1.0.0)
-  - ZLHTTPSessionManager/Unit (1.0.0):
+  - ZLHTTPSessionManager (1.0.1):
+    - ZLHTTPSessionManager/Unit (= 1.0.1)
+  - ZLHTTPSessionManager/Unit (1.0.1):
     - AFNetworking (~> 3.2.1)
 
 DEPENDENCIES:
@@ -29,7 +29,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  ZLHTTPSessionManager: 3af71663352e3dcca2a33269d680c62e9980e51b
+  ZLHTTPSessionManager: c55a75a85b9c7b7d5fefaecee3cb2811bb6a338a
 
 PODFILE CHECKSUM: 30f7e7cb5866c92c6832099ee5ec277f6282323b
 
