@@ -7,6 +7,7 @@
 //
 
 #import "ZLViewController.h"
+#import "ZLHTTPSessionHeader.h"
 
 @interface ZLViewController ()
 
@@ -17,7 +18,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	[ZLHTTPSessionManager POST:@"https://api.91tumi.com/appsys/sitelist.go" Params:nil ModelArray:nil AddHttpHeader:nil CachePolicy:YES Results:^(ZLHttpErrorState sessionErrorState, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject);
+    }];
 }
 
 - (void)didReceiveMemoryWarning

@@ -1,42 +1,21 @@
-#
-# Be sure to run `pod lib lint ZLHTTPSessionManager.podspec' to ensure this is a
-# valid spec before submitting.
-#
-# Any lines starting with a # are optional, but their use is encouraged
-# To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
-  s.name             = 'ZLHTTPSessionManager'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of ZLHTTPSessionManager.'
 
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
+s.name         = "ZLHTTPSessionManager"
+s.version      = "4.0.1"
+s.summary      = "基于AFNetworking的马甲库"
+s.description  = "对AFNetworking的请求进行了一层封装，集成了打印日志、检测网络状态、筛除NULL、转换基本数据类型为字符串、将ERROR进行分类等。"
 
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
+s.homepage     = "https://gitee.com/ZLPublicKits/ZLHTTPSessionManager"
+s.license      = "MIT"
+s.author             = { "Mr.Zhao" => "itzhaolei@foxmail.com" }
+s.ios.deployment_target = "9.0"
+s.source       = { :git => "https://gitee.com/ZLPublicKits/ZLHTTPSessionManager.git", :tag => s.version }
 
-  s.homepage         = 'https://github.com/itzhaolei/ZLHTTPSessionManager'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'itzhaolei' => 'itzhaolei@foxmail.com' }
-  s.source           = { :git => 'https://github.com/itzhaolei/ZLHTTPSessionManager.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+s.public_header_files = 'ZLHTTPSessionManager/Classes/ZLHTTPSessionHeader.h'
+s.source_files = 'ZLHTTPSessionManager/Classes/*.{h,m}'
 
-  s.ios.deployment_target = '8.0'
+s.framework  = "UIKit","Foundation"
 
-  s.source_files = 'ZLHTTPSessionManager/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'ZLHTTPSessionManager' => ['ZLHTTPSessionManager/Assets/*.png']
-  # }
+s.dependency "AFNetworking", "~> 4.0.1"
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
