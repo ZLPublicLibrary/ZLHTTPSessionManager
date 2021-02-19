@@ -8,7 +8,7 @@
 
 #import "ZLHTTPSessionManager.h"
 #import "ZLHTTPRequestProcess.h"
-#import "AFNetworking.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface ZLHTTPSessionManager ()
 

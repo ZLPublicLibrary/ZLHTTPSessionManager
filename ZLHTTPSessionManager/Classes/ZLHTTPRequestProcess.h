@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ZLHTTPSessionManager.h"
-#import "AFNetworking.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface ZLHTTPRequestProcess : NSObject
 
