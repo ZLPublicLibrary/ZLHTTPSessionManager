@@ -1,0 +1,6 @@
+framework module ZLHTTPSessionManager {
+  umbrella header "ZLHTTPSessionManager-umbrella.h"
+
+  export *
+  module * { export * }
+}
