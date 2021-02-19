@@ -7,12 +7,19 @@
 //
 
 #import "ZLAppDelegate.h"
+#import <ZLHTTPSessionManager/ZLHTTPSessionHeader.h>
 
 @implementation ZLAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    //配置项
+    [ZLHTTPSessionManager configDebugUrlPrefix:@"" OnlineUrlPrefix:@"https://api.91tumi.com" Online:YES ShowLogs:YES NetworkState:^(ZLHTTPSessionNetworkStatus state) {
+        ZLSendDidChangeNetworkEnvironmentNotification;
+    }];
+    
     return YES;
 }
 

@@ -14,7 +14,7 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
-  - ZLHTTPSessionManager (4.1.0):
+  - ZLHTTPSessionManager (4.1.2):
     - AFNetworking (~> 4.0.1)
 
 DEPENDENCIES:
@@ -30,7 +30,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
-  ZLHTTPSessionManager: 5d508e7a3d5338f7ed8ba0e9775507f1127d45e3
+  ZLHTTPSessionManager: 3accfffc0a166791354e16ed7f9d133cfd8c9232
 
 PODFILE CHECKSUM: 7287a8489c94933ae57e1c2a1a24ddde027fb8e8
 

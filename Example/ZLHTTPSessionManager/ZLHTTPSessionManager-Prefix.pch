@@ -11,6 +11,12 @@
 #endif
 
 #ifdef __OBJC__
+
+#define ZLChangeNetworkEnvironmentNotificationName @"ZLDidChangeNetworkEnvironmentNotification"
+#define ZLSendDidChangeNetworkEnvironmentNotification [NSNotificationCenter.defaultCenter postNotificationName:ZLChangeNetworkEnvironmentNotificationName object:nil]
+#define ZLChangeNetworkEnvironmentAddObserver(Observer,Selector) [NSNotificationCenter.defaultCenter addObserver:Observer selector:Selector name:ZLChangeNetworkEnvironmentNotificationName object:nil]
+#define ZLChangeNetworkEnvironmentRemoveObserver(Observer) [NSNotificationCenter.defaultCenter removeObserver:Observer name:ZLChangeNetworkEnvironmentNotificationName object:nil]
+
     @import UIKit;
     @import Foundation;
 #endif

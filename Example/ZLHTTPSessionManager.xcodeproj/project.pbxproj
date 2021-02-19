@@ -65,7 +65,7 @@
 		80413D9A56C40220E014EB3A /* Pods-ZLHTTPSessionManager_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZLHTTPSessionManager_Example.debug.xcconfig"; path = "Target Support Files/Pods-ZLHTTPSessionManager_Example/Pods-ZLHTTPSessionManager_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8817728C871F34865171CD49 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		AEB9A3BE9E7BFEE02DC8C59E /* ZLHTTPSessionManager.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ZLHTTPSessionManager.podspec; path = ../ZLHTTPSessionManager.podspec; sourceTree = "<group>"; };
+		AEB9A3BE9E7BFEE02DC8C59E /* ZLHTTPSessionManager.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ZLHTTPSessionManager.podspec; path = ../ZLHTTPSessionManager.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		DEAA2764899A9C0F0D8E39B0 /* libPods-ZLHTTPSessionManager_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZLHTTPSessionManager_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
