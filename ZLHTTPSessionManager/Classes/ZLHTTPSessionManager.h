@@ -6,6 +6,13 @@
 //  Copyright © 2018年 hengwu. All rights reserved.
 //
 
+#define ZLChangeNetworkEnvironmentNotificationName @"ZLDidChangeNetworkEnvironmentNotification"
+#define ZLSendDidChangeNetworkEnvironmentNotification [NSNotificationCenter.defaultCenter postNotificationName:ZLChangeNetworkEnvironmentNotificationName object:nil]
+#define ZLChangeNetworkEnvironmentAddObserver(Observer,Selector) [NSNotificationCenter.defaultCenter addObserver:Observer selector:Selector name:ZLChangeNetworkEnvironmentNotificationName object:nil]
+#define ZLChangeNetworkEnvironmentRemoveObserver(Observer) [NSNotificationCenter.defaultCenter removeObserver:Observer name:ZLChangeNetworkEnvironmentNotificationName object:nil]
+
+#define ZL_Not_Reachable_Message @"请求失败，请检查您的网络设置。"
+
 #import <UIKit/UIKit.h>
 #import "ZLHTTPFileModel.h"
 
