@@ -21,6 +21,7 @@ s.source_files = 'ZLHTTPSessionManager/Classes/ZLHTTPSessionHeader.h'
 
 s.subspec 'Request' do |ss|
     ss.source_files = 'ZLHTTPSessionManager/Classes/Request/*.{h,m}'
+    ss.dependency "ReplaceNull"
 end
 
 s.subspec 'ReplaceNull' do |ss|
