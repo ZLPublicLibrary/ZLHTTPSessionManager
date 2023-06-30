@@ -7,12 +7,19 @@
 //
 
 #import "ZLAppDelegate.h"
+#import "ZLHTTPSessionHeader.h"
 
 @implementation ZLAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [ZLHTTPSessionManager configDebugUrlPrefix:@"https://api.91tumi.com" OnlineUrlPrefix:@"" Online:false ShowLogs:true NetworkState:^(ZLHTTPSessionNetworkStatus state) {
+        if (state == ZLHTTPSessionNetworkStatusReachableViaWWAN || state == ZLHTTPSessionNetworkStatusReachableViaWiFi) {
+            // 首次加载无网，可通过监听网络变化重新加载解决
+            [NSNotificationCenter.defaultCenter postNotificationName:@"ZLHTTPSessionManagerTryRequest" object:nil];
+        }
+    }];
     return YES;
 }
 

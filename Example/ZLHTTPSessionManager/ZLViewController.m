@@ -15,18 +15,28 @@
 
 @implementation ZLViewController
 
+- (void)dealloc {
+    [NSNotificationCenter.defaultCenter removeObserver:self name:@"ZLHTTPSessionManagerTryRequest" object:nil];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	[ZLHTTPSessionManager POST:@"https://api.91tumi.com/appsys/sitelist.go" Params:nil ModelArray:nil AddHttpHeader:nil CachePolicy:YES Results:^(ZLHttpErrorState sessionErrorState, id  _Nullable responseObject) {
-        NSLog(@"%@",responseObject);
-    }];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(request) name:@"ZLHTTPSessionManagerTryRequest" object:nil];
+    [self request];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - 请求示例
+- (void)request {
+    [ZLHTTPSessionManager POST:@"/appsys/sitelist.go" Params:nil ModelArray:nil AddHttpHeader:nil CachePolicy:YES Results:^(ZLHttpErrorState sessionErrorState, id  _Nullable responseObject) {
+
+    }];
 }
 
 @end
