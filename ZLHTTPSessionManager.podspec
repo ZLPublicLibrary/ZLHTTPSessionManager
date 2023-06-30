@@ -14,14 +14,11 @@ s.source       = { :git => "https://gitee.com/ZLKits/ZLHTTPSessionManager.git", 
 
 
 s.public_header_files = 'ZLHTTPSessionManager/Classes/ZLHTTPSessionHeader.h'
-#s.source_files = 'ZLHTTPSessionManager/Classes/*.{h,m}'
 s.source_files = 'ZLHTTPSessionManager/Classes/ZLHTTPSessionHeader.h'
-
-
 
 s.subspec 'Request' do |ss|
     ss.source_files = 'ZLHTTPSessionManager/Classes/Request/*.{h,m}'
-    ss.dependency "ReplaceNull"
+    ss.dependency "ZLHTTPSessionManager/ReplaceNull"
 end
 
 s.subspec 'ReplaceNull' do |ss|
