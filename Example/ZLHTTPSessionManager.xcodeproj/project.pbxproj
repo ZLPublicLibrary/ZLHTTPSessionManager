@@ -306,11 +306,13 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ZLHTTPSessionManager_Example/Pods-ZLHTTPSessionManager_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/ReplaceNull/ReplaceNull.framework",
 				"${BUILT_PRODUCTS_DIR}/ZLHTTPSessionManager/ZLHTTPSessionManager.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReplaceNull.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZLHTTPSessionManager.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -503,7 +505,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZLHTTPSessionManager/ZLHTTPSessionManager-Prefix.pch";
 				INFOPLIST_FILE = "ZLHTTPSessionManager/ZLHTTPSessionManager-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -522,7 +524,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZLHTTPSessionManager/ZLHTTPSessionManager-Prefix.pch";
 				INFOPLIST_FILE = "ZLHTTPSessionManager/ZLHTTPSessionManager-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
