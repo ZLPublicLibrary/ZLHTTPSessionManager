@@ -158,57 +158,67 @@
 }
 
 /// 响应成功结果
-+ (void)completionResponseObject:(id)responseObject urlString:(nonnull NSString *)urlString dict:(nullable id)dict task:(NSURLSessionDataTask * _Nonnull)task Handler:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success {
++ (void)completionResponseObject:(id)response urlString:(nonnull NSString *)urlString dict:(nullable id)dict task:(NSURLSessionDataTask * _Nonnull)task Handler:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    //将结果转换为字典
-    if ([responseObject isKindOfClass:[NSData class]] && responseObject) {
-        responseObject = [NSJSONSerialization JSONObjectWithData:responseObject options:(NSJSONReadingMutableContainers) error:nil];
-    }
-    if ([responseObject isKindOfClass:[NSDictionary class]] && responseObject) {
-        responseObject = [((NSDictionary *)responseObject) screeningNull:[self shared].basicDataTypeToString];
-    }else if ([responseObject isKindOfClass:[NSArray class]] && responseObject) {
-        responseObject = [((NSArray *)responseObject) screeningNull:[self shared].basicDataTypeToString];
-    }
-    //调试打印
-    if ([self shared].showLogs && responseObject) {
-        NSString *message = nil;
-        if (responseObject[@"message"]) {
-            message = responseObject[@"message"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        id responseObject = response;
+        //将结果转换为字典
+        if ([responseObject isKindOfClass:[NSData class]] && responseObject) {
+            responseObject = [NSJSONSerialization JSONObjectWithData:responseObject options:(NSJSONReadingMutableContainers) error:nil];
         }
-        if (responseObject[@"msg"]) {
-            message = responseObject[@"msg"];
+        if ([responseObject isKindOfClass:[NSDictionary class]] && responseObject) {
+            responseObject = [((NSDictionary *)responseObject) screeningNull:[self shared].basicDataTypeToString];
+        }else if ([responseObject isKindOfClass:[NSArray class]] && responseObject) {
+            responseObject = [((NSArray *)responseObject) screeningNull:[self shared].basicDataTypeToString];
         }
-        NSString *headers = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[self shared].requestManager.requestSerializer.HTTPRequestHeaders options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
-        NSString *params = nil;
-        if (dict) {
-            params = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+        //调试打印
+        if ([self shared].showLogs && responseObject) {
+            NSString *message = nil;
+            if (responseObject[@"message"]) {
+                message = responseObject[@"message"];
+            }
+            if (responseObject[@"msg"]) {
+                message = responseObject[@"msg"];
+            }
+            NSString *headers = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[self shared].requestManager.requestSerializer.HTTPRequestHeaders options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+            NSString *params = nil;
+            if (dict) {
+                params = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+            }
+            NSString *resultsString = nil;
+            if ([responseObject isKindOfClass:[NSDictionary class]] || [responseObject isKindOfClass:[NSArray class]]) {
+                resultsString = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+            }else {
+                resultsString = responseObject;
+            }
+            NSLog(@"\n收到成功后的回执：%@\n\n%@\n%@\n%@\n\n%@\n\n\n.", message, urlString, params, headers, resultsString);
         }
-        NSString *resultsString = nil;
-        if ([responseObject isKindOfClass:[NSDictionary class]] || [responseObject isKindOfClass:[NSArray class]]) {
-            resultsString = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
-        }else {
-            resultsString = responseObject;
-        }
-        NSLog(@"\n收到成功后的回执：%@\n\n%@\n%@\n%@\n\n%@\n\n\n.", message, urlString, params, headers, resultsString);
-    }
-    //处理下文
-    success(task, responseObject);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //处理下文
+            success(task, responseObject);
+        });
+    });
 }
 
 /// 响应失败结果
 + (void)failure:(NSError * _Nonnull)error urlString:(nonnull NSString *)urlString dict:(nullable id)dict task:(NSURLSessionDataTask * _Nonnull)task handler:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure {
-    //调试打印
-    if ([self shared].showLogs) {
-        NSString *message = @"请求失败";
-        NSString *headers = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[self shared].requestManager.requestSerializer.HTTPRequestHeaders options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
-        NSString *params = nil;
-        if (dict) {
-            params = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        //调试打印
+        if ([self shared].showLogs) {
+            NSString *message = @"请求失败";
+            NSString *headers = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[self shared].requestManager.requestSerializer.HTTPRequestHeaders options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+            NSString *params = nil;
+            if (dict) {
+                params = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+            }
+            NSString *errorStirng = [[NSString alloc] initWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] encoding:NSUTF8StringEncoding];
+            NSLog(@"\n收到成功后的回执：%@\n\n%@\n%@\n%@\n%@\n%@\n\n\n.", message, urlString, params, headers, errorStirng ,error);
         }
-        NSString *errorStirng = [[NSString alloc] initWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] encoding:NSUTF8StringEncoding];
-        NSLog(@"\n收到成功后的回执：%@\n\n%@\n%@\n%@\n%@\n%@\n\n\n.", message, urlString, params, headers, errorStirng ,error);
-    }
-    failure(task, error);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //处理下文
+            failure(task, error);
+        });
+    });
 }
 
 
