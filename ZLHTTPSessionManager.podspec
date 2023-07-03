@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
 s.name         = "ZLHTTPSessionManager"
-s.version      = "4.0.1.2"
+s.version      = "4.0.2.0"
 s.summary      = "基于AFNetworking的优化库"
 s.description  = "对AFNetworking的请求进行了一层封装。- 集成了打印日志\n- 检测网络状态\n- 替换NULL\n- 转换基本数据类型为字符串\n"
 
