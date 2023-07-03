@@ -12,9 +12,10 @@
 @implementation NSDictionary (ZLHttpDataProcess)
 
 /**将字典中的Null替换成空字符
+ * @param basicDataTypeToString 将基本数据类型转成字符串
  *@return 返回新的没有Null的本类对象
  */
-- (instancetype)screeningNull {
+- (instancetype)screeningNull:(BOOL)basicDataTypeToString {
     NSArray *dictArray = self.allKeys;
     NSInteger count = dictArray.count;
     NSMutableDictionary *dictM = [[NSMutableDictionary alloc] initWithCapacity:count];
@@ -26,16 +27,16 @@
             continue;
         }
         if ([value isKindOfClass:[NSDictionary class]]) {
-            NSMutableDictionary *dictM2 = (NSMutableDictionary *)[((NSDictionary *)value) screeningNull];
+            NSMutableDictionary *dictM2 = (NSMutableDictionary *)[((NSDictionary *)value) screeningNull: basicDataTypeToString];
             [dictM setObject:dictM2 forKey:key];
             continue;
         }
         if ([value isKindOfClass:[NSArray class]]) {
-            NSMutableArray *objArrayM = (NSMutableArray *)[((NSArray *)value) screeningNull];
+            NSMutableArray *objArrayM = (NSMutableArray *)[((NSArray *)value) screeningNull: basicDataTypeToString];
             [dictM setObject:objArrayM forKey:key];
             continue;
         }
-        if (![value isKindOfClass:[NSString class]]) {
+        if (![value isKindOfClass:[NSString class]] && basicDataTypeToString) {
             [dictM setObject:[NSString stringWithFormat:@"%@",value] forKey:key];
             continue;
         }

@@ -12,10 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSArray (ZLHttpDataProcess)
 
-/**将数组中的Null替换成空字符
- *@return 返回新的没有Null的本类对象
+/**
+ * 将数组中的Null替换成空字符
+ * @param basicDataTypeToString 将基本数据类型转成字符串
+ * @return 返回新的没有Null的本类对象
  */
-- (NSArray *)screeningNull;
+- (NSArray *)screeningNull:(BOOL)basicDataTypeToString;
 
 @end
 

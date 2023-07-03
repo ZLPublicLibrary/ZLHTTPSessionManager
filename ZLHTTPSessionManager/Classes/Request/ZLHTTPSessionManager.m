@@ -7,7 +7,6 @@
 //
 
 #import "ZLHTTPSessionManager.h"
-#import "ZLHTTPRequestProcess.h"
 #import "NSArray+ZLHttpDataProcess.h"
 #import "NSDictionary+ZLHttpDataProcess.h"
 #import <AFNetworking/AFNetworking.h>
@@ -30,6 +29,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sessionManager = [self new];
+        sessionManager.basicDataTypeToString = true;
         sessionManager.requestManager = [AFHTTPSessionManager manager];
     });
     return sessionManager;
@@ -165,11 +165,10 @@
         responseObject = [NSJSONSerialization JSONObjectWithData:responseObject options:(NSJSONReadingMutableContainers) error:nil];
     }
     if ([responseObject isKindOfClass:[NSDictionary class]] && responseObject) {
-        responseObject = [((NSDictionary *)responseObject) screeningNull];
+        responseObject = [((NSDictionary *)responseObject) screeningNull:[self shared].basicDataTypeToString];
     }else if ([responseObject isKindOfClass:[NSArray class]] && responseObject) {
-        responseObject = [((NSArray *)responseObject) screeningNull];
+        responseObject = [((NSArray *)responseObject) screeningNull:[self shared].basicDataTypeToString];
     }
-    
     //调试打印
     if ([self shared].showLogs && responseObject) {
         NSString *message = nil;

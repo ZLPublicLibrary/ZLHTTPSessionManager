@@ -11,10 +11,12 @@
 
 @implementation NSArray (ZLHttpDataProcess)
 
-/**将数组中的Null替换成空字符
- *@return 返回新的没有Null的本类对象
+/**
+ * 将数组中的Null替换成空字符
+ * @param basicDataTypeToString 将基本数据类型转成字符串
+ * @return 返回新的没有Null的本类对象
  */
-- (NSArray *)screeningNull {
+- (NSArray *)screeningNull:(BOOL)basicDataTypeToString {
     NSInteger count = self.count;
     NSMutableArray *objArrayM = [[NSMutableArray alloc]initWithCapacity:count];
     for (NSInteger index = 0; index < count; index++) {
@@ -24,16 +26,16 @@
             continue;
         }
         if ([value isKindOfClass:[NSDictionary class]]) {
-            NSMutableDictionary *dictM = (NSMutableDictionary *)[((NSDictionary *)value) screeningNull];
+            NSMutableDictionary *dictM = (NSMutableDictionary *)[((NSDictionary *)value) screeningNull:basicDataTypeToString];
             [objArrayM addObject:dictM];
             continue;
         }
         if ([value isKindOfClass:[NSArray class]]) {
-            NSMutableArray *objArrayM2 = (NSMutableArray *)[((NSArray *)value) screeningNull];
+            NSMutableArray *objArrayM2 = (NSMutableArray *)[((NSArray *)value) screeningNull:basicDataTypeToString];
             [objArrayM addObject:objArrayM2];
             continue;
         }
-        if (![value isKindOfClass:[NSString class]]) {
+        if (![value isKindOfClass:[NSString class]] && basicDataTypeToString) {
             [objArrayM addObject:[NSString stringWithFormat:@"%@",value]];
             continue;
         }

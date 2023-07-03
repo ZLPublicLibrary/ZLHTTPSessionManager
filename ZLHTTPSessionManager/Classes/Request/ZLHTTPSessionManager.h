@@ -53,6 +53,8 @@ typedef NS_ENUM (NSInteger , HTTPMethod){
 @property (nonatomic,strong,nullable) NSMutableDictionary *httpHeaderM;
 ///当前网络状态
 @property (nonatomic,unsafe_unretained) ZLHTTPSessionNetworkStatus networkStatus;
+///将响应内容的基本数据类型转成字符串
+@property (nonatomic,unsafe_unretained) BOOL basicDataTypeToString;
 ///调试时的前缀
 @property (nonatomic,strong) NSString * _Nullable debugPrefix;
 ///发布时的前缀
