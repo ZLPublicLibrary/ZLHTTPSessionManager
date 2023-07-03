@@ -11,7 +11,7 @@
 @interface ZLHTTPFileModel : NSObject
 
 ///图片
-@property (nonatomic,strong) UIImage *fileImage;
+@property (nonatomic,strong) UIImage *image;
 ///文件二进制
 @property (nonatomic,strong) NSData *fileData;
 ///文件沙盒路径
