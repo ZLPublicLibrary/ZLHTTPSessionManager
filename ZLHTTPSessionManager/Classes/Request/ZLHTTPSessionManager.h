@@ -33,16 +33,34 @@ typedef NS_ENUM(NSInteger, ZLHTTPSessionNetworkStatus) {
     ZLHTTPSessionNetworkStatusReachableViaWiFi = 2,
 };
 
+/// 请求方式
+typedef NS_ENUM (NSInteger , HTTPMethod){
+    get = 0,
+    head ,
+    post ,
+    put ,
+    patch ,
+    delete
+};
+
+
+
 @interface ZLHTTPSessionManager : NSObject
 
+///请求时间  默认30秒  超过30秒后请求会以ZLHttpErrorStateTimeout的错误类型返回error
+@property (nonatomic,unsafe_unretained) NSTimeInterval requestTime;
 ///追加请求头
 @property (nonatomic,strong,nullable) NSMutableDictionary *httpHeaderM;
 ///当前网络状态
-@property (nonatomic,unsafe_unretained,readonly) ZLHTTPSessionNetworkStatus networkStatus;
-///请求时间  默认30秒  超过30秒后请求会以ZLHttpErrorStateTimeout的错误类型返回error
-@property (nonatomic,unsafe_unretained) NSTimeInterval requestTime;
-///当前环境
-@property (nonatomic,unsafe_unretained,readonly) BOOL online;
+@property (nonatomic,unsafe_unretained) ZLHTTPSessionNetworkStatus networkStatus;
+///调试时的前缀
+@property (nonatomic,strong) NSString * _Nullable debugPrefix;
+///发布时的前缀
+@property (nonatomic,strong) NSString * _Nullable onlinePrefix;
+///是否是发布环境
+@property (nonatomic,unsafe_unretained) BOOL online;
+///打印日志
+@property (nonatomic,unsafe_unretained) BOOL showLogs;
 
 ///获取实例
 + (instancetype _Nonnull )shared;
@@ -56,24 +74,49 @@ typedef NS_ENUM(NSInteger, ZLHTTPSessionNetworkStatus) {
  */
 + (void)configDebugUrlPrefix:(NSString *_Nullable)debugPrefix OnlineUrlPrefix:(NSString *_Nullable)onlinePrefix Online:(BOOL)online ShowLogs:(BOOL)showLogs NetworkState:(void(^_Nullable)(ZLHTTPSessionNetworkStatus state))networkComplete;
 
-/**GET请求
- *@param urlString 请求地址
- *@param dict 请求参数
- *@param isAddHeader 是否追加head头，如需增加，请在外界对本类属性httpHeaderM进行配置
- *@param cachePolicy 缓存策略
- *@param complete 处理结果
- *@return Task
- */
-+ (NSURLSessionDataTask *_Nullable)GET:(NSString *_Nonnull)urlString Params:(NSDictionary *_Nullable)dict AddHttpHeader:(BOOL)isAddHeader CachePolicy:(NSURLRequestCachePolicy)cachePolicy Results:(void (^_Nullable)(ZLHttpErrorState sessionErrorState, id _Nullable responseObject))complete;
 
-/**POST请求 --  追加图片数据
- *@param urlString 请求地址
- *@param dict 请求参数
- *@param isAddHeader 是否追加head头，如需增加，请在外界对本类属性httpHeaderM进行配置
- *@param cachePolicy 缓存策略
- *@param complete 处理结果
- *@return Task
+
+/**
+ 根据HTTPMethod创建一个NSURLSessionDataTask
+ 
+ @param method 请求的方式
+ @param urlString 请求的地址
+ @param dict 请求的参数
+ @param downloadProgress 下载的进度
+ @param success 成功的事件回调
+ @param failure 失败的事件回调
+ @param isAddHeader 是否允许添加 -- 例如：未登录时使用false来控制不传token
+ @param cachePolicy 缓存策略
  */
-+ (NSURLSessionDataTask *_Nullable)POST:(NSString *_Nonnull)urlString Params:(NSDictionary *_Nullable)dict ModelArray:(NSArray <ZLHTTPFileModel *>*_Nullable)modelArray AddHttpHeader:(BOOL)isAddHeader CachePolicy:(NSURLRequestCachePolicy)cachePolicy Results:(void (^_Nullable)(ZLHttpErrorState sessionErrorState, id _Nullable responseObject))complete;
++ (nullable NSURLSessionDataTask *)request:(nonnull NSString *)urlString
+                                HTTPMethod:(HTTPMethod)method
+                                    Params:(nullable id)dict
+                             AddHttpHeader:(BOOL)isAddHeader
+                               CachePolicy:(NSURLRequestCachePolicy)cachePolicy
+                          downloadProgress:(nullable void (^)(NSProgress * _Nonnull downloadProgress))downloadProgress
+                                   success:(nullable void (^)(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject))success
+                                   failure:(nullable void (^)(NSURLSessionDataTask * _Nonnull task, NSError * _Nullable error))failure;
+
+
+/**
+ * POST请求 --  文件上传
+ * @param urlString 请求地址
+ * @param dict 请求参数
+ * @param isAddHeader 是否追加head头，如需增加，请在外界对本类属性httpHeaderM进行配置
+ * @param cachePolicy 缓存策略
+ * @param modelArray 文件模型
+ * @param uploadProgress 上传进度
+ * @param success 成功事件
+ * @param failure 失败事件
+ * @return Task
+ */
++ (NSURLSessionDataTask *_Nullable)POST:(NSString *_Nonnull)urlString
+                                 Params:(NSDictionary *_Nullable)dict
+                             ModelArray:(NSArray <ZLHTTPFileModel *>*_Nullable)modelArray
+                          AddHttpHeader:(BOOL)isAddHeader
+                            CachePolicy:(NSURLRequestCachePolicy)cachePolicy
+                         uploadProgress:(nullable void (^)(NSProgress * _Nonnull uploadProgress))uploadProgress
+                                success:(nullable void (^)(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject))success
+                                failure:(nullable void (^)(NSURLSessionDataTask * _Nonnull task, NSError * _Nullable error))failure;
 
 @end

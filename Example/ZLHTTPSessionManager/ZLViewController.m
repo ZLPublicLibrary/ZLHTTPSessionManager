@@ -22,6 +22,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = UIColor.redColor;
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(request) name:@"ZLHTTPSessionManagerTryRequest" object:nil];
     [self request];
 }
@@ -34,8 +35,10 @@
 
 #pragma mark - 请求示例
 - (void)request {
-    [ZLHTTPSessionManager POST:@"/appsys/sitelist.go" Params:nil ModelArray:nil AddHttpHeader:nil CachePolicy:YES Results:^(ZLHttpErrorState sessionErrorState, id  _Nullable responseObject) {
-
+    [ZLHTTPSessionManager request:@"/appsys/sitelist.go" HTTPMethod:post Params:nil AddHttpHeader:false CachePolicy:false downloadProgress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+    } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nullable error) {
+        
     }];
 }
 
