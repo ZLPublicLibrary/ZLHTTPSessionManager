@@ -42,22 +42,4 @@
     }];
 }
 
-#pragma mark - 下载示例
-- (void)download {
-    [ZLHTTPSessionManager request:@"/appsys/sitelist.go" HTTPMethod:post Params:nil AddHttpHeader:false CachePolicy:false downloadProgress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-    } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nullable error) {
-        
-    }];
-}
-
-#pragma mark - 上传示例
-- (void)upload {
-    [ZLHTTPSessionManager request:@"/appsys/sitelist.go" HTTPMethod:post Params:nil AddHttpHeader:false CachePolicy:false downloadProgress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-    } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nullable error) {
-        
-    }];
-}
-
 @end
