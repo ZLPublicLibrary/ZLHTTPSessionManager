@@ -16,13 +16,13 @@ s.source       = { :git => "https://gitee.com/ZLKits/ZLHTTPSessionManager.git", 
 s.public_header_files = 'ZLHTTPSessionManager/Classes/ZLHTTPSessionHeader.h'
 s.source_files = 'ZLHTTPSessionManager/Classes/ZLHTTPSessionHeader.h'
 
-s.subspec 'Request' do |ss|
+s.subspec 'ZLRequest' do |ss|
     ss.ios.deployment_target = "11.0"
     ss.source_files = 'ZLHTTPSessionManager/Classes/Request/*.{h,m}'
-#    ss.dependency "ZLHTTPSessionManager/ReplaceNull"
+    ss.dependency "ZLHTTPSessionManager/ZLReplaceNull"
 end
 
-s.subspec 'ReplaceNull' do |ss|
+s.subspec 'ZLReplaceNull' do |ss|
     ss.ios.deployment_target = "11.0"
     ss.source_files = 'ZLHTTPSessionManager/Classes/ReplaceNull/*.{h,m}'
 end
