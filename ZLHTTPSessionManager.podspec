@@ -17,11 +17,13 @@ s.public_header_files = 'ZLHTTPSessionManager/Classes/ZLHTTPSessionHeader.h'
 s.source_files = 'ZLHTTPSessionManager/Classes/ZLHTTPSessionHeader.h'
 
 s.subspec 'Request' do |ss|
+    ss.ios.deployment_target = "11.0"
     ss.source_files = 'ZLHTTPSessionManager/Classes/Request/*.{h,m}'
 #    ss.dependency "ZLHTTPSessionManager/ReplaceNull"
 end
 
 s.subspec 'ReplaceNull' do |ss|
+    ss.ios.deployment_target = "11.0"
     ss.source_files = 'ZLHTTPSessionManager/Classes/ReplaceNull/*.{h,m}'
 end
 
