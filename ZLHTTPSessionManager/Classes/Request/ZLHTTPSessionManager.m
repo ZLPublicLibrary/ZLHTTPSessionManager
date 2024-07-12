@@ -206,11 +206,11 @@
  * @param failure 失败事件
  * @return Task
  */
-+ (NSURLSessionDataTask *_Nullable)POST:(NSString *_Nonnull)urlString
-                                 Params:(NSDictionary *_Nullable)dict
-                             ModelArray:(NSArray <ZLHTTPFileModel *>*_Nullable)modelArray
-                          AddHttpHeader:(BOOL)isAddHeader
-                            CachePolicy:(NSURLRequestCachePolicy)cachePolicy
++ (NSURLSessionDataTask *_Nullable)post:(NSString *_Nonnull)urlString
+                                 params:(NSDictionary *_Nullable)dict
+                             modelArray:(NSArray <ZLHTTPFileModel *>*_Nullable)modelArray
+                          addHttpHeader:(BOOL)isAddHeader
+                            cachePolicy:(NSURLRequestCachePolicy)cachePolicy
                           configRequest:(nullable void (^)(AFHTTPSessionManager * _Nonnull requestManager))configRequest
                          uploadProgress:(nullable void (^)(NSProgress * _Nonnull uploadProgress))uploadProgress
                                 success:(nullable void (^)(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject))success
