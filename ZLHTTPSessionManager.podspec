@@ -5,12 +5,12 @@ s.version      = "4.3.1.4"
 s.summary      = "基于AFNetworking的优化库"
 s.description  = "对AFNetworking的请求进行了一层封装。- 检测网络状态\n- 替换NULL\n- 转换基本数据类型为字符串\n"
 
-s.homepage     = "https://github.com/ZLPublicLibrary/ZLHTTPSessionManager"
+s.homepage     = "https://gitee.com/ZLKits/ZLHTTPSessionManager"
 s.license      = "MIT"
 s.author             = { "Mr.Zhao" => "itzhaolei@foxmail.com" }
 s.ios.deployment_target = "11.0"
 s.requires_arc = true
-s.source       = { :git => "https://github.com/ZLPublicLibrary/ZLHTTPSessionManager.git", :tag => s.version }
+s.source       = { :git => "https://gitee.com/ZLKits/ZLHTTPSessionManager.git", :tag => s.version }
 
 
 s.public_header_files = 'ZLHTTPSessionManager/Classes/ZLHTTPSessionHeader.h'
