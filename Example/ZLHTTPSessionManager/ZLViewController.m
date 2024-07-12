@@ -35,8 +35,8 @@
 
 #pragma mark - 普通请求示例
 - (void)request {
-    [ZLHTTPSessionManager request:@"/appsys/sitelist.go" HTTPMethod:post Params:nil AddHttpHeader:false CachePolicy:false downloadProgress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
+    [ZLHTTPSessionManager request:@"/appsys/sitelist.go" httpMethod:post params:nil addHttpHeader:false cachePolicy:false configRequest:nil downloadProgress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@", responseObject);
     } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nullable error) {
         
     }];

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ZLHTTPFileModel.h"
+#import <AFNetworking/AFNetworking.h>
 
 ///请求失败状态
 typedef NS_ENUM (NSInteger , ZLHttpErrorState){
@@ -84,6 +85,7 @@ typedef NS_ENUM (NSInteger , HTTPMethod){
  @param method 请求的方式
  @param urlString 请求的地址
  @param dict 请求的参数
+ @param configRequest 将要发送请求前，对请求信息进行补充
  @param downloadProgress 下载的进度
  @param success 成功的事件回调
  @param failure 失败的事件回调
@@ -91,22 +93,24 @@ typedef NS_ENUM (NSInteger , HTTPMethod){
  @param cachePolicy 缓存策略
  */
 + (nullable NSURLSessionDataTask *)request:(nonnull NSString *)urlString
-                                HTTPMethod:(HTTPMethod)method
-                                    Params:(nullable id)dict
-                             AddHttpHeader:(BOOL)isAddHeader
-                               CachePolicy:(NSURLRequestCachePolicy)cachePolicy
+                                httpMethod:(HTTPMethod)method
+                                    params:(nullable id)dict
+                             addHttpHeader:(BOOL)isAddHeader
+                               cachePolicy:(NSURLRequestCachePolicy)cachePolicy
+                             configRequest:(nullable void (^)(AFHTTPSessionManager * _Nonnull requestManager))configRequest
                           downloadProgress:(nullable void (^)(NSProgress * _Nonnull downloadProgress))downloadProgress
                                    success:(nullable void (^)(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject))success
                                    failure:(nullable void (^)(NSURLSessionDataTask * _Nonnull task, NSError * _Nullable error))failure;
 
 
 /**
- * POST请求 --  文件上传
+ * POST请求 --  追加图片数据
  * @param urlString 请求地址
  * @param dict 请求参数
  * @param isAddHeader 是否追加head头，如需增加，请在外界对本类属性httpHeaderM进行配置
  * @param cachePolicy 缓存策略
  * @param modelArray 文件模型
+ * @param configRequest 将要发送请求前，对请求信息进行补充
  * @param uploadProgress 上传进度
  * @param success 成功事件
  * @param failure 失败事件
@@ -117,6 +121,7 @@ typedef NS_ENUM (NSInteger , HTTPMethod){
                              ModelArray:(NSArray <ZLHTTPFileModel *>*_Nullable)modelArray
                           AddHttpHeader:(BOOL)isAddHeader
                             CachePolicy:(NSURLRequestCachePolicy)cachePolicy
+                          configRequest:(nullable void (^)(AFHTTPSessionManager * _Nonnull requestManager))configRequest
                          uploadProgress:(nullable void (^)(NSProgress * _Nonnull uploadProgress))uploadProgress
                                 success:(nullable void (^)(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject))success
                                 failure:(nullable void (^)(NSURLSessionDataTask * _Nonnull task, NSError * _Nullable error))failure;
